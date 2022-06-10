@@ -4,8 +4,10 @@ import { FilteredResult } from "./apiHandler";
 
 document.getElementById("location-select")?.addEventListener("click", refresh);
 document.getElementById("btn-update")?.addEventListener("click", refresh);
-//update every 2 seconds
-//const timer = setInterval(refresh, 2000);
+document.getElementById("btn-fullscreen-enable")?.addEventListener("click", () => ipcRenderer.send("enable-fullscreen"))
+document.getElementById("btn-fullscreen-disable")?.addEventListener("click", () => ipcRenderer.send("disable-fullscreen"))
+
+
 
 ipcRenderer.on("location-request", () => {
 	ipcRenderer.send("location-reply", getSelectedRadioValue("location"));

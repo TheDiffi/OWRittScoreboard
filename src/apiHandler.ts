@@ -40,8 +40,6 @@ async function update(specifiedLocation?: Locations) {
 		.filter((v) => v.platz <= 5)
         .sort((a,b) => a.platz - b.platz);
 
-		console.log(topFive)
-
     mainWindow?.webContents.send("top-five-update", topFive)
 }
 

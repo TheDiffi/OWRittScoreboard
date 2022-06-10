@@ -1,4 +1,4 @@
-import { app, BrowserWindow, Menu } from "electron";
+import electron, { app, BrowserWindow, ipcMain, Menu } from "electron";
 export let mainWindow: BrowserWindow | undefined = undefined;
 
 function initialize() {
@@ -79,6 +79,9 @@ function initialize() {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
+
 require("./apiHandler.js");
+ipcMain.on("enable-fullscreen", (event) => {mainWindow?.setFullScreen(true); console.log("test")})
+ipcMain.on("disable-fullscreen", (event) => mainWindow?.setFullScreen(false))
 
 initialize();
