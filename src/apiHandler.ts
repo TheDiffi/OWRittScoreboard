@@ -32,13 +32,15 @@ async function update(specifiedLocation?: Locations) {
 		.map((v) => ({
 			team: v.team,
 			platz: Number.parseInt((v as any)["platz" + dict[location]]),
-			zeit: (v as any)["zeit" + dict[location]],
+			zeit: location != "ende" ? (v as any)["zeit" + dict[location]] : v.total,
 			diff: (v as any)["diff" + dict[location]],
 			strafe: (v as any)["strafe" + dict[location]],
 			total: v.total,
 		}as FilteredResult))
 		.filter((v) => v.platz <= 5)
         .sort((a,b) => a.platz - b.platz);
+
+		console.log(topFive)
 
     mainWindow?.webContents.send("top-five-update", topFive)
 }

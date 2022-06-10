@@ -10,16 +10,16 @@ function initialize() {
 			show: false,
 			resizable: true,
 			autoHideMenuBar: true,
-/* 			transparent: true,
+			//transparent: true,
 			frame: false,
- */			webPreferences: {
+			 webPreferences: {
 				nodeIntegration: true,
 				contextIsolation: false,
 			},
 		});
 
 		// Open the DevTools.
-		//mainWindow.webContents.openDevTools();
+		mainWindow.webContents.openDevTools();
 		var menu = Menu.buildFromTemplate([
 			{
 				label: "Menu",
