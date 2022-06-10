@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
+		<meta
+			http-equiv="Content-Security-Policy"
+			content="default-src 'self'; script-src 'self' 'unsafe-inline'"
+		/>
+		<meta
+			http-equiv="X-Content-Security-Policy"
+			content="default-src 'self'; script-src 'self' 'unsafe-inline'"
+		/>
+		<link rel="stylesheet" href="./assets/css/index.css" />
+		<title>Hello World!</title>
+	</head>
+	<body>
+		<div id="logo">
+			<img src="./assets/img/logo_small.png" alt="logo_small" />
+		</div>
+		<div id="banner">
+			<img class="banner" src="./assets/img/banner.png" alt="banner.png" />
+		</div>
+
+		<div id="menu" class="hidden">
+			<button id="btn-update">Update</button>
+			<div class="" id="location-select">
+				<input type="radio"  name="location" value="kastelruth" /> 
+				<label for="kastelruth">Kastelruth</label><br />
+				<input type="radio"  name="location" value="seis" />
+				<label for="seis">Seis</label><br />
+				<input type="radio" name="location" value="weiher" />
+				<label for="weiher">Weiher</label><br />
+				<input type="radio" name="location" value="proesels" />
+				<label for="proesels">Prösels</label><br />
+				<input type="radio" name="location" value="ende" />
+				<label for="ende">Ende</label><br />
+			</div>
+		</div>
+
+		<div id="content">
+			<div id="scoreboard">
+				<div class="item">TEST</div>
+				<div class="item">TEST</div>
+				<div class="item">TEST</div>
+				<div class="item">TEST</div>
+				<div class="item">TEST</div>
+			</div>
+		</div>
+	</body>
+	<!-- You can also require other files to run in this process -->
+	<script>
+		require("./out/renderer.js")
+	</script>
+</html>

@@ -1,0 +1,32 @@
+{
+	"name": "electron-quick-start",
+	"version": "1.0.0",
+	"description": "A minimal Electron application",
+	"main": "main.js",
+	"scripts": {
+		"build": "tsc",
+		"watch": "tsc -w",
+		"debug": "electron ./out/main.js",
+		"start": "npm run build && electron ./out/main.js"
+	},
+	"repository": "https://github.com/electron/electron-quick-start",
+	"keywords": [
+		"Electron",
+		"quick",
+		"start",
+		"tutorial",
+		"demo"
+	],
+	"author": "GitHub",
+	"license": "CC0-1.0",
+	"devDependencies": {
+		"@types/glob": "^7.2.0",
+		"electron": "^19.0.1"
+	},
+	"dependencies": {
+		"axios": "^0.27.2",
+		"electron-reload": "^2.0.0-alpha.1",
+		"glob": "^8.0.3",
+		"typescript": "^4.7.2"
+	}
+}

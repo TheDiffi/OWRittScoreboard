@@ -1,0 +1,80 @@
+body {
+	background-image: url("../img/background_empty.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+}
+#logo {
+	position: fixed;
+    aspect-ratio: 1/1;
+    height: auto;
+    width: 12vw;
+    right: 2%;
+	top: 4%;
+    z-index: 20;
+}
+#logo img {
+	height: inherit;
+	width: inherit;
+}
+
+#banner {
+	position: fixed;
+	bottom: 5px;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.5);
+	text-align: center;
+}
+#banner img {
+	height: 16vh;
+	width: auto;
+}
+
+#content {
+	margin: auto;
+	height: 65vh;
+	position: relative;
+	top: 45%;
+	transform: translateY(-50%);
+	aspect-ratio: 17/9;
+}
+
+#scoreboard {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	max-height: 100%;
+	border-top: solid 1px rgba(222, 177, 94, 0.927);
+	border-bottom: solid 1px rgba(222, 177, 94, 0.927);
+}
+#scoreboard div.item {
+	padding-left: 3%;
+	font-size: 7vh;
+	flex-grow: 1;
+}
+#scoreboard div.item:nth-child(2n) {
+	background: rgba(226, 151, 139, 0.482);
+}
+
+
+#menu {
+	position: fixed;
+	padding: 10px;
+	border-color: blue;
+
+}
+
+.invis {
+	opacity: 0;
+}
+.hidden {
+	opacity: 0;
+}
+.hidden:hover {
+	opacity: 1;
+}
