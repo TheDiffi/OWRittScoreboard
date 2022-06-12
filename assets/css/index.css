@@ -82,6 +82,10 @@ body {
 	flex: 1;
 }
 
+.menu-item{
+	font-size: 24px;
+}
+
 
 #menu {
 	-webkit-app-region: no-drag;

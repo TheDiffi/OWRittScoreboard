@@ -52,7 +52,6 @@ function getLocation() {
 	});
 }
 
-//TODO: ende scoreboard zeigt undefined
 
 const dict = {
 	kastelruth: "K",

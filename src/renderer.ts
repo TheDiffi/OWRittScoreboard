@@ -16,6 +16,7 @@ ipcRenderer.on("top-five-update", (event, topFive: FilteredResult[]) => updateSc
 
 function refresh() {
 	console.log("send refresh request");
+    updateTitle();
 	let location = getSelectedRadioValue("location");
 	ipcRenderer.send("refresh", location);
 }
@@ -38,6 +39,7 @@ function updateScoreboard(topFive: FilteredResult[]) {
 
     function createScoreNode(type: "time" | "team" | "place", value:string) {
         console.log(value)
+        if(value.indexOf("undefined") != -1) value.replace("undefined.", "");
         let newScoreNode = document.createElement("div");
         newScoreNode.setAttribute("class", `score-${type}`);
         newScoreNode.innerHTML = value;
@@ -51,3 +53,8 @@ function getSelectedRadioValue(radioName: string) {
 		if (ele.checked!) return ele.value as string;
 	}
 }
+function updateTitle() {
+    const elem = document.getElementById("title")
+    let radio = getSelectedRadioValue("location");
+}
+
