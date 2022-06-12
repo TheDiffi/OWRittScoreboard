@@ -14,7 +14,7 @@ ipcMain.on("refresh", (event, specifiedLocation: Locations) => update(specifiedL
 async function update(specifiedLocation?: Locations) {
     console.log("\nRetrieving Data...")
     //gets location and data from api
-	var resProm = axios.get(testUrl);
+	var resProm = axios.get(urlOW);
 	let [location, res] = specifiedLocation
 		? [specifiedLocation, await resProm]
 		: await Promise.all([getLocation(), resProm]);
