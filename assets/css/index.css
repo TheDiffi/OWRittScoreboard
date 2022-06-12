@@ -41,9 +41,15 @@ body {
 	margin: auto;
 	height: 65vh;
 	position: relative;
-	top: 45%;
+	top: 37%;
 	transform: translateY(-50%);
 	aspect-ratio: 17/9;
+}
+
+#title{
+	font-size: 7.5vh;
+text-align: center;
+padding-bottom: 10px;
 }
 
 #scoreboard {
