@@ -1,15 +1,18 @@
 import { ipcRenderer } from "electron/renderer";
-import { getNameOfDeclaration } from "typescript";
 import { FilteredResult } from "./apiHandler";
 
 document.getElementById("location-select")?.addEventListener("click", refresh);
+document.getElementById("btn-exit")?.addEventListener("click", () => ipcRenderer.send("exit"));
 document.getElementById("btn-update")?.addEventListener("click", refresh);
 document
-	.getElementById("btn-fullscreen-enable")
-	?.addEventListener("click", () => ipcRenderer.send("enable-fullscreen"));
-document
-	.getElementById("btn-fullscreen-disable")
-	?.addEventListener("click", () => ipcRenderer.send("disable-fullscreen"));
+	.getElementById("btn-fullscreen-toggle")
+	?.addEventListener("click", toggleFullscreen);
+
+function toggleFullscreen() {
+	let checkbox = document.getElementById("btn-fullscreen-toggle") as HTMLInputElement;
+	ipcRenderer.send("toggle-fullscreen", checkbox.checked);
+}
+
 
 ipcRenderer.on("location-request", () => {
 	ipcRenderer.send("location-reply", getSelectedRadioValue("location"));
@@ -26,12 +29,13 @@ function refresh() {
 function updateScoreboard(topFive: FilteredResult[]) {
 	console.log("updating scorebord...");
 	topFive.sort((a, b) => a.platz - b.platz).reverse();
+
 	const fields = document.querySelectorAll("#scoreboard div.score-content");
 	for (const field of fields) {
 		let team = topFive.pop();
-		let placeNode = createScoreNode("place", team?.platz.toString() + ". " ?? "No value");
-		let teamNode = createScoreNode("team", team?.team ?? "");
-		let timeNode = createScoreNode("time", team?.zeit ?? "");
+		let placeNode = createScoreNode("place", team?.platz.toString() + ". " ?? "---");
+		let teamNode = createScoreNode("team", team?.team ?? "-----");
+		let timeNode = createScoreNode("time", team?.zeit ?? "-----");
 
 		field.innerHTML = ""; //clears Node
 		field.appendChild(placeNode);

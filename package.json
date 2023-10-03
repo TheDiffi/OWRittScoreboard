@@ -1,32 +1,44 @@
 {
-	"name": "electron-quick-start",
-	"version": "1.0.0",
-	"description": "A minimal Electron application",
-	"main": "main.js",
+	"name": "oswald-von-wolkenstein",
+	"version": "1.5.0",
+	"description": "Displays a scoreboard for the Oswald von Wolkenstein tournament",
+	"main": "./out/main.js",
 	"scripts": {
 		"build": "tsc",
 		"watch": "tsc -w",
 		"debug": "electron ./out/main.js",
-		"start": "npm run build && electron ./out/main.js"
+		"start": "npm run build && electron ./out/main.js",
+		"pack": "npm run build && electron-builder --dir",
+  		"dist": "npm run build && electron-builder",
+		"postinstall": "electron-builder install-app-deps"
 	},
-	"repository": "https://github.com/electron/electron-quick-start",
-	"keywords": [
-		"Electron",
-		"quick",
-		"start",
-		"tutorial",
-		"demo"
-	],
-	"author": "GitHub",
+	"repository": "https://github.com/TheDiffi/OWRittScoreboard",
+	"author": "TheDiffi",
 	"license": "CC0-1.0",
 	"devDependencies": {
 		"@types/glob": "^7.2.0",
-		"electron": "^19.0.1"
+		"electron": "^26.2.4",
+		"electron-builder": "^24.6.4"
 	},
 	"dependencies": {
 		"axios": "^0.27.2",
 		"electron-reload": "^2.0.0-alpha.1",
 		"glob": "^8.0.3",
 		"typescript": "^4.7.2"
-	}
+	},
+	"build": {
+		"productName": "Oswald von Wolkenstein Scoreboard",
+		"icon": "./assets/img/app-icon.png"
+	  },
+	  "files": [
+		"**/*",
+		"!**/*.ts",
+		"!*.map",
+		"!package.json",
+		"!package-lock.json",
+		{
+		  "from": "../dist",
+		  "filter": ["**/*"]
+		}
+	  ]
 }

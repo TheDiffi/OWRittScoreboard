@@ -1,5 +1,7 @@
 import electron, { app, BrowserWindow, ipcMain, Menu } from "electron";
 export let mainWindow: BrowserWindow | undefined = undefined;
+const path = require("path");
+const url = require("url");
 
 function initialize() {
 	function createWindow() {
@@ -12,40 +14,23 @@ function initialize() {
 			autoHideMenuBar: true,
 			//transparent: true,
 			frame: false,
-			 webPreferences: {
+			webPreferences: {
 				nodeIntegration: true,
 				contextIsolation: false,
 			},
 		});
 
 		// Open the DevTools.
-		mainWindow.webContents.openDevTools();
-		var menu = Menu.buildFromTemplate([
-			{
-				label: "Menu",
-				submenu: [
-					{
-						label: "openDevTools",
-						click() {
-							mainWindow.webContents.openDevTools();
-						},
-					},
-					{ type: "separator" }, //basically empty menu point
-					{
-						label: "Exit",
-						click() {
-							app.quit();
-						},
-						toolTip: "it closes the app you dummy",
-					},
-				],
-			},
-		]);
-
-		Menu.setApplicationMenu(menu);
+		// mainWindow.webContents.openDevTools();
 
 		// and load the index.html of the app.
-		mainWindow.loadFile("../index.html");
+		mainWindow.loadURL(
+			url.format({
+				pathname: path.join(__dirname, "../assets/html/index.html"),
+				protocol: "file:",
+				slashes: true,
+			})
+		);
 
 		return mainWindow;
 	}
@@ -79,9 +64,11 @@ function initialize() {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
 
-
 require("./apiHandler.js");
-ipcMain.on("enable-fullscreen", (event) => {mainWindow?.setFullScreen(true); console.log("test")})
-ipcMain.on("disable-fullscreen", (event) => mainWindow?.setFullScreen(false))
-
+ipcMain.on("toggle-fullscreen", (event, value) => {
+	mainWindow?.setFullScreen(value);
+});
+ipcMain.on("exit", () => {
+	app.quit();
+});
 initialize();

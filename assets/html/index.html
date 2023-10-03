@@ -5,37 +5,39 @@
 		<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
 		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'" />
 		<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@700&display=swap" rel="stylesheet" />
-		<link rel="stylesheet" href="./assets/css/index.css" />
+		<link rel="stylesheet" href="../css/index.css" />
 		<title>Hello World!</title>
 	</head>
 	<body>
-		<div id="logo">
-			<img src="./assets/img/logo_small.png" alt="logo_small" />
-		</div>
-		<div id="banner">
-			<img class="banner" src="./assets/img/banner.png" alt="banner.png" />
-		</div>
-
-		<div id="menu" class="hidden">
-			<button class="menu-item" id="btn-update">Update</button>
-			<button class="menu-item" id="btn-fullscreen-enable">Fullscreen On</button>
-			<button class="menu-item" id="btn-fullscreen-disable">Fullscreen Off</button>
-			<div class="menu-item" id="location-select">
-				<input type="radio" name="location" value="kastelruth" class="menu-item"/>
-				<label for="kastelruth" class="menu-item">Kastelruth</label><br />
-				<input type="radio" name="location" value="seis" class="menu-item"/>
-				<label for="seis" class="menu-item">Seis</label><br />
-				<input type="radio" name="location" value="weiher" class="menu-item"/>
-				<label for="weiher" class="menu-item">Weiher</label><br />
-				<input type="radio" name="location" value="proesels" class="menu-item"/>
-				<label for="proesels" class="menu-item">Prösels</label><br />
-				<input type="radio" name="location" value="ende" class="menu-item"/>
-				<label for="ende" class="menu-item">Ende</label><br />
+		<div id="floating-elements">
+			<div id="logo">
+				<img src="../img/logo_small.png" alt="logo_small" />
+			</div>
+			<div id="banner">
+				<img class="banner" src="../img/banner.png" alt="banner.png" />
+			</div>
+	
+			<div id="menu" class="hidden">
+				
+				<input class="menu-item" type="checkbox" id="btn-fullscreen-toggle" name="fullscreen" value="fullscreen">
+				<label for="fullscreen"> Toggle Fullscreen</label><br>
+				<div class="menu-item" id="location-select">
+					<input type="radio" name="location" value="kastelruth" class="menu-item"/>
+					<label for="kastelruth" class="menu-item">Kastelruth</label><br />
+					<input type="radio" name="location" value="seis" class="menu-item"/>
+					<label for="seis" class="menu-item">Seis</label><br />
+					<input type="radio" name="location" value="weiher" class="menu-item"/>
+					<label for="weiher" class="menu-item">Weiher</label><br />
+					<input type="radio" name="location" value="proesels" class="menu-item"/>
+					<label for="proesels" class="menu-item">Prösels</label><br />
+					<input type="radio" name="location" value="ende" class="menu-item" checked/>
+					<label for="ende" class="menu-item">Ende</label><br />
+				</div>
+				<button class="menu-item menu-btn" id="btn-update">Update</button>
+				<button class="menu-item menu-btn" id="btn-exit">Exit 🛑</button><br>
 			</div>
 		</div>
+		
 
 		<div id="content">
 			<div id="title">Total</div>
@@ -51,7 +53,7 @@
 				<div class="score">
 					<div class="score-content">
 						<div class="score-place">place</div>
-						<div class="score-team">teamtesnwdf</div>
+						<div class="score-team">team</div>
 						<div class="score-time">time</div>
 					</div>
 				</div>
@@ -81,6 +83,6 @@
 	</body>
 	<!-- You can also require other files to run in this process -->
 	<script>
-		require("./out/renderer.js");
+		require("../../out/renderer.js");
 	</script>
 </html>
