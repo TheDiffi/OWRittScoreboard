@@ -2,7 +2,12 @@
 
 A simple application to display a scoreboard of the Oswald von Wolkenstein Ritt.
 
-### How to install
+## NEW: How to Install:
+*Windows*: Navigate to "Releases" (on the right side) and download the newest setup.exe.
+
+If you use a different OS or Arch, either contact me or try the step below.
+
+### How to run with node
 1. Clone the repo with `git clone <url>`
 2. Make sure you have Node.js intalled.
 3. Install the node modules by navigating to the cloned folder and executing `npm i`
