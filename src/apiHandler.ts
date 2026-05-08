@@ -37,7 +37,7 @@ async function update(specifiedLocation?: Locations) {
 			strafe: (v as any)["strafe" + dict[location]],
 			total: v.total,
 		}as FilteredResult))
-		.filter((v) => v.platz <= 5)
+		.filter((v) => v.platz > 0 && v.platz <= 5)
         .sort((a,b) => a.platz - b.platz);
 
     mainWindow?.webContents.send("top-five-update", topFive)
