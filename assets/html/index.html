@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
-		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'" />
-		<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self' data: blob:" />
+		<meta http-equiv="X-Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; img-src 'self' data: blob:" />
 		<link rel="stylesheet" href="../css/index.css" />
 		<title>Hello World!</title>
 	</head>
@@ -35,6 +35,8 @@
 				</div>
 				<button class="menu-item menu-btn" id="btn-update">Update</button>
 				<button class="menu-item menu-btn" id="btn-exit">Exit 🛑</button><br>
+				<div for="banner-upload" class="menu-item">Custom Banner (PNG only):</div>
+				<input type="file" id="banner-upload" class="menu-item" name="banner-upload" accept=".png">
 			</div>
 		</div>
 		

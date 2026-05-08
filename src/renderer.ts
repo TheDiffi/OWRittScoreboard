@@ -7,12 +7,25 @@ document.getElementById("btn-update")?.addEventListener("click", refresh);
 document
 	.getElementById("btn-fullscreen-toggle")
 	?.addEventListener("click", toggleFullscreen);
+document.getElementById("banner-upload")?.addEventListener("change", handleBannerUpload);
 
 function toggleFullscreen() {
 	let checkbox = document.getElementById("btn-fullscreen-toggle") as HTMLInputElement;
 	ipcRenderer.send("toggle-fullscreen", checkbox.checked);
 }
 
+function handleBannerUpload(event: Event) {
+	const input = event.target as HTMLInputElement;
+	if (input.files && input.files[0]) {
+		const file = input.files[0];
+		if (file.type === "image/png") {
+			const bannerImg = document.querySelector("#banner .banner") as HTMLImageElement;
+			bannerImg.src = URL.createObjectURL(file);
+		} else {
+			alert("Please select a PNG file for the banner.");
+		}
+	}
+}
 
 ipcRenderer.on("location-request", () => {
 	ipcRenderer.send("location-reply", getSelectedRadioValue("location"));
