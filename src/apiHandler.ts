@@ -1,57 +1,43 @@
-import axios, { AxiosResponse } from "axios";
+import axios from "axios";
 import { ipcMain } from "electron/main";
-import { mainWindow } from "./main";
+import { mainWindow, getCurrentLocation } from "./main";
 
 const urlOW = "https://www.ovwritt.com/ritt-ajax.php?action=get-live-ritt-data";
-const testUrl = "https://www.ovwritt.com/ritt-ajax.php?action=get-result-data"
 
-//update every 2 seconds
 const timer = setInterval(update, 2000);
 
-//update on request from user
-ipcMain.on("refresh", (event, specifiedLocation: Locations) => update(specifiedLocation));
+ipcMain.on("refresh", (_, specifiedLocation?: Locations) => update(specifiedLocation));
 
 async function update(specifiedLocation?: Locations) {
-    console.log("\nRetrieving Data...")
-    //gets location and data from api
-	var resProm = axios.get(urlOW);
-	let [location, res] = specifiedLocation
-		? [specifiedLocation, await resProm]
-		: await Promise.all([getLocation(), resProm]);
-
+	console.log("\nRetrieving Data...");
+	const location: Locations = specifiedLocation ?? (getCurrentLocation() as Locations);
+	const res = await axios.get(urlOW);
 	const data = res.data.data as ResultEntry[];
 
-    // filters the top 5
 	let topFive = data
-        //if the race is finished then exclude who has not finished all locations
-		.filter((v) => location != "ende" 
-            || Object.values(dict).every((l) => (v as any)["platz" + l]))
-        //filters out the right location for any team
-		.map((v) => ({
-			team: v.team,
-			platz: Number.parseInt((v as any)["platz" + dict[location]]),
-			zeit: location != "ende" ? (v as any)["zeit" + dict[location]] : v.total,
-			diff: (v as any)["diff" + dict[location]],
-			strafe: (v as any)["strafe" + dict[location]],
-			total: v.total,
-		}as FilteredResult))
-		.filter((v) => v.platz > 0 && v.platz  <= 5)
-        .sort((a,b) => a.platz - b.platz);
+		.filter(
+			(v) =>
+				location !== "ende" ||
+				Object.values(dict).every((l) => (v as any)["platz" + l])
+		)
+		.map(
+			(v) =>
+				({
+					team: v.team,
+					platz: Number.parseInt((v as any)["platz" + dict[location]]),
+					zeit: location !== "ende" ? (v as any)["zeit" + dict[location]] : v.total,
+					diff: (v as any)["diff" + dict[location]],
+					strafe: (v as any)["strafe" + dict[location]],
+					total: v.total,
+				} as FilteredResult)
+		)
+		.filter((v) => v.platz > 0 && v.platz <= 5)
+		.sort((a, b) => a.platz - b.platz);
 
-    mainWindow?.webContents.send("top-five-update", topFive)
+	mainWindow?.webContents.send("top-five-update", topFive);
 }
 
-function getLocation() {
-	return new Promise<Locations>(function (resolve, reject) {
-		mainWindow?.webContents.send("location-request");
-		ipcMain.once("location-reply", (event, location) => {
-			resolve(location as Locations);
-		});
-	});
-}
-
-
-const dict = {
+const dict: Record<Locations, string> = {
 	kastelruth: "K",
 	seis: "S",
 	weiher: "W",
@@ -60,8 +46,6 @@ const dict = {
 };
 
 type Locations = "kastelruth" | "seis" | "weiher" | "proesels" | "ende";
-
-
 
 interface ResultEntry {
 	jahr: string;
@@ -93,10 +77,10 @@ interface ResultEntry {
 }
 
 export interface FilteredResult {
-    team: string,
-    platz: number,
-    zeit:string,
-    strafe:string,
-    total:string,
-    diff:string
+	team: string;
+	platz: number;
+	zeit: string;
+	strafe: string;
+	total: string;
+	diff: string;
 }

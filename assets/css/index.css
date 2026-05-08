@@ -38,8 +38,6 @@ body {
     z-index: 20;
 }
 
-
-
 #logo img {
     height: inherit;
     width: inherit;
@@ -59,62 +57,36 @@ body {
     width: auto;
 }
 
-.menu {
-    font-size: 12px;
-}
-
-.menu-item {
-    font-size: 14px;
-}
-.menu-btn {
-    font-size: 12px;
-}
-.menu-btn {
-	font-size: 14px;
-	padding: 5px 10px;
-	border: 1px solid #ccc;
-	background-color: #fff;
-	border-radius: 5px;
-	transition: background-color 0.1s ease-in-out;
-}
-
-#btn-exit{
-	margin-left: 15px !important;
-}
-
-.menu-btn:hover {
-	background-color: #f2f2f2;
-}
-#menu {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: #fff;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    font-family: 'Courier New', Courier, monospace;
-    -webkit-app-region: no-drag;
+#menu-trigger {
+    position: fixed;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 28px;
     z-index: 100;
+    -webkit-app-region: no-drag;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 8px;
 }
 
-#menu .menu-item {
-    margin: 5px 0;
-}
-
-#menu .menu-item label {
-    margin-left: 5px;
-}
-
-#menu .hidden {
-    display: none;
-}
-
-.invis, .hidden {
+#open-menu-btn {
     opacity: 0;
+    transition: opacity 0.2s ease;
+    background: rgba(0, 0, 0, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: white;
+    border-radius: 4px;
+    width: 22px;
+    height: 22px;
+    font-size: 13px;
+    padding: 0;
+    cursor: pointer;
+    -webkit-app-region: no-drag;
 }
 
-.hidden:hover {
+#menu-trigger:hover #open-menu-btn {
     opacity: 1;
 }
 
@@ -126,13 +98,6 @@ body {
     top: 37%;
     transform: translateY(-50%);
     aspect-ratio: 17/9;
-}
-
-#title {
-	font-size: 10vh;
-	font-weight: bold;
-	text-align: center;
-	padding-bottom: 10px;
 }
 
 #title {
@@ -149,7 +114,7 @@ body {
     max-height: 100%;
     border: solid rgba(222, 177, 94, 0.927);
     border-width: 1px 0;
-	
+
 }
 .score-team
 {
@@ -176,13 +141,9 @@ body {
     background: rgba(218, 178, 104, 0.542);
 }
 
-/* .score:nth-child(2n) {
-    background: none;
-} */
 .score-place {
     font-weight: bold;
 }
-
 
 .score-content {
     display: flex;
@@ -190,7 +151,7 @@ body {
     flex-direction: row;
     justify-content: start;
     width: 100%;
-	
+
 }
 
 .score-team {
@@ -200,4 +161,3 @@ body {
 .score-time {
     flex: 1;
 }
-

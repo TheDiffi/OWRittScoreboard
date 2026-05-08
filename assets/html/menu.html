@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline';" />
+		<link rel="stylesheet" href="../css/menu.css" />
+		<title>Scoreboard Settings</title>
+	</head>
+	<body>
+		<div id="menu-body">
+			<label class="menu-row">
+				<input type="checkbox" id="btn-fullscreen-toggle" />
+				Fullscreen
+			</label>
+
+			<hr />
+
+			<div id="location-select">
+				<label><input type="radio" name="location" value="kastelruth" /> Kastelruth</label>
+				<label><input type="radio" name="location" value="seis" /> Seis</label>
+				<label><input type="radio" name="location" value="weiher" /> Weiher</label>
+				<label><input type="radio" name="location" value="proesels" /> Prösels</label>
+				<label><input type="radio" name="location" value="ende" checked /> Total / Ende</label>
+			</div>
+
+			<hr />
+
+			<div id="menu-actions">
+				<button id="btn-update">↻ Update</button>
+				<button id="btn-banner">Banner…</button>
+				<button id="btn-exit" class="danger">Exit</button>
+			</div>
+		</div>
+	</body>
+	<script>
+		require("../../out/menu.js");
+	</script>
+</html>
