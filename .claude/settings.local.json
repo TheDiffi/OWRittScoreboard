@@ -4,7 +4,9 @@
       "Bash(Get-ChildItem -Path \"d:\\\\OVW\\\\OVW 2024\\\\Ritt Programm test\\\\OWRittScoreboard\" -Recurse -File)",
       "Bash(Select-Object FullName)",
       "Bash(Select-Object -First 50)",
-      "Bash(Format-Table FullName)"
+      "Bash(Format-Table FullName)",
+      "Bash(npx ctx7@latest *)",
+      "Bash(npm audit *)"
     ]
   }
 }
